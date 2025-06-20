@@ -50,12 +50,12 @@ Feature: Pruebas de la API REST de personajes de Marvel
   @id:5 @ObtenerPersonajePorId @solicitudExitosa200
   Scenario: Obtener personaje por ID exitoso
     # Se asume que el ID del personaje creado en el escenario anterior es 1
-    * def id = karate.get('createdId', 1)
+    * def id = karate.get('createdId', 6)
     Given path id
     When method GET
     Then status 200
     And match response.id == id
-    And match response.name == 'Spider-Man'
+    And match response.name == 'Iron Man'
 
   @id:6 @ObtenerPersonajePorId @errorNoEncontrado404
   Scenario: Obtener personaje por ID no existente
@@ -67,7 +67,7 @@ Feature: Pruebas de la API REST de personajes de Marvel
   @id:7 @ActualizarPersonaje @solicitudExitosa200
   Scenario: Actualizar personaje exitosamente
     # Se asume que el ID del personaje creado en el escenario anterior es 1
-    * def id = karate.get('createdId', 1)
+    * def id = karate.get('createdId', 6)
     Given path id
     And request { name: 'Iron Man Actualizar', alterego: 'Tony Stark', description: 'Updated description', powers: ['Armor', 'Flight'] }
     When method PUT
@@ -86,7 +86,7 @@ Feature: Pruebas de la API REST de personajes de Marvel
   @id:9 @EliminarPersonaje @solicitudExitosa204
   Scenario: Eliminar personaje exitosamente
     # Se asume que el ID del personaje creado en el escenario anterior es 1
-    * def id = karate.get('createdId', 1)
+    * def id = karate.get('createdId', 6)
     Given path id
     When method DELETE
     Then status 204
